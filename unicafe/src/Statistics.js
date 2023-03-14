@@ -1,15 +1,17 @@
-import Result from "./Result";
+import StatisticLine from "./StatisticLine";
 
 const Statistics = (props) => {
   return (
-    <>
-      <Result info={props.good} />
-      <Result info={props.neutral} />
-      <Result info={props.bad} />
-      <Result info={props.all} />
-      <Result info={props.average} />
-      <Result info={props.precent} />
-    </>
+    <table>
+      <tbody>
+        <StatisticLine info={props.good} />
+        <StatisticLine info={props.neutral} />
+        <StatisticLine info={props.bad} />
+        <StatisticLine info={props.all} />
+        <StatisticLine info={props.average} />
+        <StatisticLine info={props.precent} />
+      </tbody>
+    </table>
   );
 };
 

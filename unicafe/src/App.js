@@ -25,7 +25,13 @@ function App() {
       case "average":
         return { tag: tag, num: get_average() };
       case "precent":
-        return { tag: tag, num: get_precent_pos() };
+        return {
+          tag: tag,
+          num: get_precent_pos()
+            .toString()
+            .match(/^-?\d+(?:\.\d{0,2})?/)[0]
+            .concat("%"),
+        };
       default:
         console.log(`Unable to find ${tag} tag!`);
     }
