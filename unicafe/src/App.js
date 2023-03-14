@@ -30,6 +30,18 @@ function App() {
         console.log(`Unable to find ${tag} tag!`);
     }
   };
+  if (good === 0 && bad === 0 && neutral === 0) {
+    return (
+      <div>
+        <h1>Give Feedback</h1>
+        <Button handleFunc={good_handle_func} text={"good"} />
+        <Button handleFunc={neutral_handle_func} text={"neutral"} />
+        <Button handleFunc={bad_handle_func} text={"bad"} />
+        <h1>Statistics</h1>
+        <p>No feedback given</p>
+      </div>
+    );
+  }
   return (
     <div>
       <h1>Give Feedback</h1>
