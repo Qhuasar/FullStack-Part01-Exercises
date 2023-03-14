@@ -1,9 +1,9 @@
-const Result = ({ info: { rate, num } }) => {
-  console.log(rate, num);
+const Result = (props) => {
+  const { tag, num } = props.info();
   return (
     <>
       <p>
-        {rate}: {num}
+        {tag}: {num}
       </p>
     </>
   );
