@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "./Button";
 
 const App = () => {
   const anecdotes = [
@@ -11,22 +12,43 @@ const App = () => {
     "Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.",
     "The only way to go fast, is to go well.",
   ];
-  const votes_arr = new Uint8Array(anecdotes.length);
+  const votes_arr = Array(anecdotes.length).fill(0);
   const [selected, setSelected] = useState(0);
   const [votes, setVotes] = useState(votes_arr);
+  const [most_votes, setMostVotes] = useState(0);
+
   const get_rand_anedc = () =>
     setSelected(Math.floor(Math.random() * anecdotes.length));
+
+  const set_most_votes = () => {
+    console.log(votes);
+    for (let i = 0; i < votes.length; i++) {
+      if (votes[i] > votes[selected]) {
+        return;
+      }
+    }
+    setMostVotes(selected);
+    return;
+  };
+
   const add_vote = () => {
-    const copy = { ...votes };
+    const copy = [...votes];
     copy[selected] += 1;
     setVotes(copy);
+    set_most_votes();
   };
+
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <p>has {votes[selected]}</p>
-      <button onClick={add_vote}>Vote</button>
-      <button onClick={get_rand_anedc}>next anecdote</button>
+      <Button handleFunc={get_rand_anedc} text={"next anecdocte"} />
+      <Button handleFunc={add_vote} text={"vote"} />
+
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[most_votes]}
+      <p>has {votes[most_votes]}</p>
     </div>
   );
 };
